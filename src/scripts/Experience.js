@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import gsap from 'gsap';
+import * as dat from 'lil-gui';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 export default class Experience {
@@ -40,8 +41,11 @@ export default class Experience {
     const ambiantLight = new THREE.AmbientLight('#ffffff', 0.8);
     this.scene.add(ambiantLight);
 
+    this.gui = new dat.GUI();
+
     const directinalLight = new THREE.DirectionalLight('#ffffff', 4);
     directinalLight.position.set(1, 2, 5);
+    this.gui.add(directinalLight.position, 'x', -10, 10, 0.01);
     directinalLight.castShadow = true;
     directinalLight.shadow.camera.far = 10;
     directinalLight.shadow.normalBias = 0.027;
